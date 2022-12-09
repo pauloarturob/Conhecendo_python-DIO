@@ -50,3 +50,12 @@ print(resul)
 (saldo >= saque and saque <= limite) or (conta_especial and saldo >= saque)
 
 
+#outro modo de montar a expressão
+
+conta_normal =  saldo >= saque and saque <= limite
+conta_especial_suficiente = conta_especial and saldo >= saque
+
+resolucao = conta_normal or conta_especial_suficiente
+print(resolucao)
+
+
