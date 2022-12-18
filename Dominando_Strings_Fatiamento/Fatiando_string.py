@@ -9,7 +9,7 @@ print(nome[-1]) #imprime a ultima letra da string 'r'
 nome[:5]
 print(nome[:5]) #Irá imprimir o estiver ate 5 'Paulo'
 
-nome[11:]
+nome[12:]
 print(nome[12:]) #irá imprimir do 12 pra frente' Baeta Artur
 
 nome[12:16]
