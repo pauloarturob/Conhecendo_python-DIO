@@ -3,15 +3,14 @@ import textwrap
 
 def menu():
     menu = '''Escolha umas das seguintes opções:
-    [d]\t Depositar
-    [s]\t Sacar
-    [e]\t Extrato
-    [nc]\t Nova Conta
-    [lc]\t Lista Contas
-    [nu]\t Novo Usuário
-    [q]\t Sair
-    => 
-    '''
+    [d]\tDepositar
+    [s]\tSacar
+    [e]\tExtrato
+    [nc]\tNova Conta
+    [lc]\tLista Contas
+    [nu]\tNovo Usuário
+    [q]\tSair
+    => '''
     return input(textwrap.dedent(menu))
 def depositar(saldo, valor, extrato, /):
     if valor > 0:
@@ -27,17 +26,17 @@ def sacar(*, saldo, valor, extrato, limite, numero_saque, limite_saque):
     excedeu_saldo = valor > saldo
     excedeu_limite = valor > limite
     excedeu_saques = numero_saque >= limite_saque
-    if valor > 0:
-        saldo -= valor
-        extrato += f'Saque:\t\tR$ {valor:.2f}\n'
-        numero_saque += 1
-        print('\n === Saque realizando!===')
-    elif excedeu_saldo:
+    if excedeu_saldo:
         print('\n@@@ Falhou! Seu saldo é insuficiente! @@@')
     elif excedeu_limite:
         print('\n@@@ Falhou! Valor excede o limite! @@@')
     elif excedeu_saques:
         print('\n@@@ Falhou! Você atingiu o limite de saque por dia! @@@')
+    elif valor > 0:
+        saldo -= valor
+        extrato += f'Saque:\t\tR$ {valor:.2f}\n'
+        numero_saque += 1
+        print('\n === Saque realizando!===')
     else:
         print('\n@@@ Operação não realizanda! valor digitado invalido!@@@')
     return saldo, extrato
