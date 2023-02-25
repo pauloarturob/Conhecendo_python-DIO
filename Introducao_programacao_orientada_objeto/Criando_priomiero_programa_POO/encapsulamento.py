@@ -78,4 +78,4 @@ class Pessoa:
         return _ano_atual - self._ano_nascimento
 
 pessoa = Pessoa(input('Nome: '), int(input('Ano de nascimento: ')))
-print(f'Nome: {pessoa._nome} \tIdade {pessoa.idade}')
+print(f'Nome: {pessoa._nome} \tIdade: {pessoa.idade}')
