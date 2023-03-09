@@ -72,7 +72,12 @@ with Session(engine) as session:
 
     session.commit()
 
-stmt = select(User).where(User.name.in_(['Paulo']))
-
+stmt = select(User).where(User.name.in_(['Paulo', 'Stefanie']))
+print('Recuperando usuarios a partir de condição de filtragem')
 for user in session.scalars(stmt):
     print(user)
+
+stmt1 = select(Address).where(Address.user_id.in_([2]))
+print('\nRecuperando endereços de email de Stenfanie')
+for address in session.scalars(stmt1):
+    print(address)
