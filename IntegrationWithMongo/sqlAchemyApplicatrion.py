@@ -1,5 +1,5 @@
 import sqlalchemy as sqlA
-from sqlalchemy import Column, inspect, select
+from sqlalchemy import Column, inspect, select, func
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import String
@@ -81,3 +81,24 @@ stmt1 = select(Address).where(Address.user_id.in_([2]))
 print('\nRecuperando endereços de email de Stenfanie')
 for address in session.scalars(stmt1):
     print(address)
+
+order_stmt = select(User).order_by(User.fullname.desc())
+
+for result in session.scalars(order_stmt):
+    print(result)
+
+stmt_join = select(User.fullname, Address.email).join_from(Address, User)
+for result in session.scalars(stmt_join):
+    print(result)
+
+connection = engine.connect()
+results = connection.execute(stmt_join).fetchall()
+print("\nExecultando statement a partir de connection")
+
+for result in results:
+    print(result)
+
+stmt_count = select(func.count('*')).select_from(User)
+print("\nTotal de instancias ")
+for result in session.scalars(stmt_count):
+    print(result)
